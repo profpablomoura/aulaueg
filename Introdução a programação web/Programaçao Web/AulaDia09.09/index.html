@@ -1,0 +1,147 @@
+<!DOCTYPE html> <!-- Informa ao navegador que o documento usa HTML5. -->
+<html lang="pt-br">
+
+<!-- Define o idioma principal da página como português do Brasil. -->
+
+<head>
+    <!-- Permite exibir corretamente acentos e caracteres especiais. -->
+    <meta charset="UTF-8">
+    <!-- Ajusta a largura da página para dispositivos móveis. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Texto exibido na aba do navegador. -->
+    <title>Formulários</title>
+</head>
+
+<body>
+
+    <!--
+        form agrupa os campos e permite enviar os dados.
+        action define o destino do envio; method="post" envia os dados no corpo
+        da requisição, sem colocá-los na URL. O destino precisa ser um servidor
+        capaz de processar o formulário; um arquivo JavaScript sozinho não recebe
+        POST automaticamente.
+    -->
+    <form action="codigo.js" method="post">
+        <!--
+            action="codigo.js": indica para onde os dados do formulário serão enviados.
+            Neste caso, será enviado para o arquivo "codigo.js".
+
+            method="post": define como os dados serão enviados.
+            O método POST envia os dados de forma mais segura e não aparece na URL,
+            sendo usado para formularios que enviam informações.
+        -->
+
+        <!-- label identifica o campo; for deve ser igual ao id do input. -->
+        <label for="nome">
+            <b>Nome Completo</b>
+        </label>
+        <!-- type="text" cria um campo de texto comum. minlength, maxlength e
+               required definem tamanho mínimo, máximo e preenchimento obrigatório. -->
+        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" minlength="4" maxlength="30"
+            required> <br><br>
+
+        <!-- Campo para informar o endereço. -->
+        <label for="endereço">
+            <b>Endereço</b>
+        </label>
+        <input type="text" id="endereço" name="endereço" placeholder="Digite seu endereço" minlength="10"
+            maxlength="100" required> <br><br>
+
+        <!-- Campo para informar a cidade. -->
+        <label for="cidade">
+            <b>Cidade</b>
+        </label>
+        <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade" minlength="3" maxlength="50"
+            required> <br><br>
+
+        <!-- Campo para o CEP. -->
+        <label for="cep">
+            <b>CEP</b>
+        </label>
+        <!-- pattern exige cinco números, um hífen e três números. -->
+        <input type="text" id="cep" name="cep" placeholder="Digite seu CEP" pattern="[0-9]{5}-[0-9]{3}" maxlength="8"
+            required> <br><br>
+
+        <!-- Campo de e-mail; o navegador verifica um formato básico de e-mail. -->
+        <label for="email">
+            <b>Email</b>
+        </label>
+        <input type="email" id="email" name="email" placeholder="Digite seu email" required> <br><br>
+
+        <!-- Campo de senha; seu conteúdo fica oculto na tela. -->
+        <label for="senha">
+            <b>Senha</b>
+        </label>
+        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" minlength="6" maxlength="20"
+            required> <br><br>
+
+        <!-- Campo destinado a telefone; a validação depende do navegador ou de um pattern. -->
+        <label for="telefone">
+            <b>Telefone</b>
+        </label>
+        <input type="tel" id="telefone" name="telefone" placeholder="Digite seu telefone" required> <br><br>
+
+        <!-- type="date" mostra um seletor de data. -->
+        <label for="dataNascimento">
+            <b>Data de Nascimento</b>
+        </label>
+        <input type="date" id="dataNascimento" name="dataNascimento" required> <br><br>
+
+        <!-- type="url" verifica se o valor parece ser um endereço web. -->
+        <label for="url">
+            <b>URL</b>
+        </label>
+        <input type="url" id="url" name="url" placeholder="Digite uma URL" required> <br><br>
+
+        <!-- Radio buttons permitem escolher apenas uma opção com o mesmo name. -->
+        <p><b>Sexo:</b></p>
+        <input type="radio" id="masculino" name="sexo" value="masculino" required> <label
+            for="masculino">Masculino</label> <br>
+        <input type="radio" id="feminino" name="sexo" value="feminino" required> <label for="feminino">Feminino</label>
+        <br><br>
+
+
+        <!-- Checkbox permite marcar zero, uma ou várias opções. -->
+        <p><b>Assuntos de interesse:</b></p>
+        <input type="checkbox" id="tecnologia" name="interesses" value="tecnologia"> <label
+            for="tecnologia">Tecnologia</label> <br>
+        <input type="checkbox" id="esportes" name="interesses" value="esportes"> <label for="esportes">Esportes </label>
+        <br>
+        <input type="checkbox" id="filmes" name="interesses" value="filmes"> <label for="filmes">Filmes</label> <br><br>
+
+        <!-- select cria uma lista suspensa; option representa cada escolha. -->
+        <label for="estadoCivil">
+            <b>Estado Civil</b>
+        </label>
+
+        <select name="estadoCivil" id="estadoCivil" required>
+            <option value="solteiro">Solteiro(a)</option>
+            <option value="casado">Casado(a)</option>
+            <option value="divorciado">Divorciado(a)</option>
+            <option value="viuvo">Viúvo(a)</option>
+        </select> <br><br>
+
+        <!-- Lista suspensa para selecionar uma unidade federativa. -->
+        <label for="uf">
+            <b>Estado (UF)</b>
+        </label>
+        <select name="uf" id="uf" required>
+            <!-- Opção inicial vazia, selecionada e desabilitada para forçar uma escolha. -->
+            <option value="" selected disabled></option>
+            <option value="GO">Goiás</option>
+            <option value="SP">São Paulo</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="MG">Minas Gerais</option>
+        </select> <br><br>
+
+        <!-- submit valida os campos e envia o formulário para o action. -->
+        <input type="submit" value="Enviar">
+        <!-- reset restaura todos os campos aos valores iniciais. -->
+        <input type="reset" value="Limpar"> <br><br>
+
+    </form>
+
+
+</body>
+
+</html>
