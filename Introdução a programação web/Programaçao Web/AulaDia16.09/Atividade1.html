@@ -6,53 +6,230 @@
     <title>Atividade 1</title>
 </head>
 <body>
-<h1> Cadastro de Usuário </h1>
 
-<form action ="Atividade1.html" method="post">
-    
+<h1>Cadastro de Usuário</h1>
+
+<form action="Atividade1.html" method="post">
+
     <fieldset>
-        <legend> <b> Dados Pessoais </b></legend>
+        <legend><b>Dados Pessoais</b></legend>
 
         <label for="nome"><b>Nome Completo:</b></label>
-        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required> <br> <br>
+        <input type="text" id="nome" name="nome"
+        placeholder="Digite seu nome"
+        minlength="3" maxlength="100" required>
+        <br><br>
 
         <label for="cpf"><b>CPF:</b></label>
-        <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required > <br> <br>
+        <input type="text" id="cpf" name="cpf"
+        placeholder="Digite seu CPF"
+        minlength="11" maxlength="11" required>
+        <br><br>
 
         <label for="dataNascimento"><b>Data de Nascimento:</b></label>
-        <input type="date" id="dataNascimento" name="dataNascimento" required> <br> <br>
+        <input type="date" id="dataNascimento"
+        name="dataNascimento" required>
+        <br><br>
 
-        <label for = "sexo"><b>Sexo:</b></label>
-        <input type="radio" id="masculino" name="sexo" value="masculino" required> 
+        <label><b>Sexo:</b></label>
+
+        <input type="radio" id="masculino"
+        name="sexo" value="masculino" required>
         <label for="masculino">Masculino</label>
-        <input type="radio" id="feminino" name="sexo" value="feminino" required> 
-        <label for="feminino">Feminino</label> <br> <br>
 
-        <label for = "estadoCivil"><b>Estado Civil</b></label>
+        <input type="radio" id="feminino"
+        name="sexo" value="feminino">
+        <label for="feminino">Feminino</label>
+
+        <br><br>
+
+        <label for="estadoCivil"><b>Estado Civil:</b></label>
+
         <select name="estadoCivil" id="estadoCivil" required>
+            <option value="">Selecione</option>
             <option value="solteiro">Solteiro(a)</option>
             <option value="casado">Casado(a)</option>
             <option value="divorciado">Divorciado(a)</option>
             <option value="viuvo">Viúvo(a)</option>
-        </select> <br><br>
+        </select>
+
+        <br><br>
 
     </fieldset>
+
 
     <fieldset>
-    <legend><b>Dados de Contato</b></legend>
-    
-        <label for = "email"><b>Email:</b></label>
-        <input type="email" id="email" name="email" placeholder="Digite seu email" required> <br><br>
-        
-        <label for="url"><b>WebSite</b></label>
-        <input type="url" id="url" name="url" placeholder="Digite uma URL" required> <br><br>
+        <legend><b>Dados de Contato</b></legend>
 
-        <label for ="endereco"><b>Endereço:</b></label>
-        <input type="text" id="endereço" name="endereço" placeholder="Digite seu endereço" minlength="10" maxlength="100" required> <br><br>
-        
-        
+        <label for="email"><b>E-mail:</b></label>
+        <input type="email" id="email" name="email"
+        placeholder="Digite seu email" required>
+        <br><br>
 
+        <label for="url"><b>Website:</b></label>
+        <input type="url" id="url" name="url"
+        placeholder="Digite uma URL" required>
+        <br><br>
+
+        <label for="endereco"><b>Endereço:</b></label>
+        <input type="text" id="endereco" name="endereco"
+        placeholder="Digite seu endereço"
+        minlength="10" maxlength="100" required>
+        <br><br>
+
+        <label for="bairro"><b>Bairro:</b></label>
+        <input type="text" id="bairro" name="bairro"
+        placeholder="Digite seu bairro"
+        minlength="3" maxlength="50" required>
+        <br><br>
+
+        <label for="cidade"><b>Cidade:</b></label>
+        <input type="text" id="cidade" name="cidade"
+        placeholder="Digite sua cidade"
+        minlength="3" maxlength="50" required>
+        <br><br>
+
+        <label for="uf"><b>UF:</b></label>
+
+        <select name="uf" id="uf" required>
+            <option value="">Selecione</option>
+            <option value="AC">AC</option>
+            <option value="AL">AL</option>
+            <option value="AP">AP</option>
+            <option value="AM">AM</option>
+            <option value="BA">BA</option>
+            <option value="CE">CE</option>
+            <option value="DF">DF</option>
+            <option value="ES">ES</option>
+            <option value="GO">GO</option>
+            <option value="MA">MA</option>
+            <option value="MT">MT</option>
+            <option value="MS">MS</option>
+            <option value="MG">MG</option>
+            <option value="PA">PA</option>
+            <option value="PB">PB</option>
+            <option value="PR">PR</option>
+            <option value="PE">PE</option>
+            <option value="PI">PI</option>
+            <option value="RJ">RJ</option>
+            <option value="RN">RN</option>
+            <option value="RS">RS</option>
+            <option value="RO">RO</option>
+            <option value="RR">RR</option>
+            <option value="SC">SC</option>
+            <option value="SP">SP</option>
+            <option value="SE">SE</option>
+            <option value="TO">TO</option>
+        </select>
+
+        <br><br>
+
+        <label for="cep"><b>CEP:</b></label>
+        <input type="text" id="cep" name="cep"
+        placeholder="00000000"
+        minlength="8" maxlength="8" required>
+        <br><br>
+
+        <label for="telefone"><b>Telefone:</b></label>
+        <input type="tel" id="telefone" name="telefone"
+        minlength="10" maxlength="10" required>
+        <br><br>
+
+        <label for="celular"><b>Celular:</b></label>
+        <input type="tel" id="celular" name="celular"
+        minlength="11" maxlength="11" required>
+        <br><br>
 
     </fieldset>
+
+
+    <fieldset>
+        <legend><b>Dados de Cadastro</b></legend>
+
+        <label for="login"><b>Login:</b></label>
+        <input type="text" id="login" name="login"
+        minlength="4" maxlength="20" required>
+        <br><br>
+
+        <label for="senha"><b>Senha:</b></label>
+        <input type="password" id="senha" name="senha"
+        minlength="6" maxlength="20" required>
+        <br><br>
+
+        <b>Deseja receber informações sobre:</b>
+        <br><br>
+
+        <input type="checkbox" id="tecnologia"
+        name="informacoes" value="tecnologia">
+        <label for="tecnologia">Tecnologia</label>
+
+        <input type="checkbox" id="esportes"
+        name="informacoes" value="esportes">
+        <label for="esportes">Esportes</label>
+
+        <input type="checkbox" id="automoveis"
+        name="informacoes" value="automoveis">
+        <label for="automoveis">Automóveis</label>
+
+        <input type="checkbox" id="culinaria"
+        name="informacoes" value="culinaria">
+        <label for="culinaria">Culinária</label>
+
+        <input type="checkbox" id="politica"
+        name="informacoes" value="politica">
+        <label for="politica">Política</label>
+
+        <input type="checkbox" id="tempo"
+        name="informacoes" value="tempo">
+        <label for="tempo">Tempo</label>
+
+        <br><br>
+
+        <input type="checkbox" id="cultura"
+        name="informacoes" value="cultura">
+        <label for="cultura">Cultura</label>
+
+        <input type="checkbox" id="economia"
+        name="informacoes" value="economia">
+        <label for="economia">Economia</label>
+
+        <input type="checkbox" id="jogos"
+        name="informacoes" value="jogos">
+        <label for="jogos">Jogos</label>
+
+        <input type="checkbox" id="educacao"
+        name="informacoes" value="educacao">
+        <label for="educacao">Educação</label>
+
+        <input type="checkbox" id="viagens"
+        name="informacoes" value="viagens">
+        <label for="viagens">Viagens</label>
+
+        <input type="checkbox" id="empregos"
+        name="informacoes" value="empregos">
+        <label for="empregos">Empregos</label>
+
+        <input type="checkbox" id="moda"
+        name="informacoes" value="moda">
+        <label for="moda">Moda e Estilo</label>
+
+        <br><br>
+
+        <input type="checkbox" id="termos"
+        name="termos" value="aceito" required>
+
+        <label for="termos">
+            Li as regras de cadastro e autorizo a criação do usuário
+        </label>
+
+        <br><br>
+
+        <input type="submit" value="Confirmar">
+        <input type="reset" value="Retornar">
+
+    </fieldset>
+
+</form>
+
 </body>
 </html>
