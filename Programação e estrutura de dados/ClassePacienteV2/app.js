@@ -1,33 +1,34 @@
 import { Paciente } from "./Paciente.js";
 
-const p1 = new Paciente("Pablo", 100, 1.83, "Masculino");
-const p2 = new Paciente("Maria", 70, 1.80, "Feminino");
-let dadosP1 = "Dados do Paciente P1 \n";
-dadosP1 += "Nome completo: " + p1.nomeCompleto + "\n";
-dadosP1 += "Peso: " + p1.peso + "\n";
-dadosP1 += "Altura: " + p1.altura + "\n";
-dadosP1 += "Sexo: " + p1.sexo + "\n";
-dadosP1 += "IMC: " + p1.calcularIMC();
-console.log(dadosP1);
+const btnCadastrar = document.getElementById("btnCadastrar");
 
+btnCadastrar.onclick = function(){
 
-p1.nomeCompleto = "Goldofredo";
-p1.peso = 70;
-p1.altura = 1.80;
+    let nomeCompleto = document.getElementById("nomeCompleto").value;
 
-dadosP1 = "Dados do Paciente P1 \n";
-dadosP1 += "Nome completo: " + p1.nomeCompleto + "\n";
-dadosP1 += "Peso: " + p1.peso + "\n";
-dadosP1 += "Altura: " + p1.altura + "\n";
-dadosP1 += "Sexo: " + p1.sexo + "\n";
-dadosP1 += "IMC: " + p1.calcularIMC();
-console.log(dadosP1);
+    let peso = Number(document.getElementById("peso").value);
 
+    let altura = Number(document.getElementById("altura").value);
 
+    let sexo = document.getElementById("sexo").value;
 
-//console.log(p1);
-//console.log("Valor do IMC: " + p1.calcularIMC());
-//console.log(p2);
-//console.log("Valor do IMC: " + p2.calcularIMC());
+    const paciente = new Paciente(nomeCompleto, peso, altura, sexo);
 
+    let dadosPaciente = "";
 
+    dadosPaciente += "Nome Completo: " + paciente.nomeCompleto + "<br>";
+
+    dadosPaciente += "Peso: " + paciente.peso + " kg<br>";
+
+    dadosPaciente += "Altura: " + paciente.altura + " m<br>";
+
+    dadosPaciente += "Sexo: " + paciente.sexo + "<br>";
+
+    dadosPaciente += "IMC: " + paciente.calcularIMC().toFixed(2) + "<br>";
+
+    dadosPaciente += "Faixa de Risco: " + paciente.calcularFaixaRisco() + "<br>";
+
+    dadosPaciente += "Peso Ideal: " + paciente.calcularPesoIdeal().toFixed(2) + " kg";
+
+    document.getElementById("dadosPaciente").innerHTML = dadosPaciente;
+}
