@@ -1,0 +1,115 @@
+
+
+p {
+    color: black;
+}
+
+.servico {
+    background-color: green;
+    font-size: 12px;
+    color: white;
+    border: 2px black solid;
+    margin: 5px;
+    font-weight: bold;
+    width: 400px;
+    text-align: center;
+}
+
+#contato {
+    background-color: gray;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+header {
+    color: white;
+    background-color: lightblue;
+    font-weight: bold;
+    text-align: center;
+}
+
+body {
+    font-family: Arial, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+nav {
+    background-color: lightgray;
+    padding: 10px;
+    text-align: center;
+}
+
+
+nav a {
+    color: black;
+    text-decoration: none;
+    margin:  8px;
+}
+
+nav a:hover {
+    background-color: darkgray;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    padding: 10px;
+    border: 2px solid black;
+}
+
+th{
+    background-color: aqua;
+
+}
+
+fieldset {
+    border: 2px solid black;
+    margin: 0 0 20px;
+}
+
+legend {
+    font-weight: bold;
+    color: blue;
+}
+
+.campo {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 6px;
+    margin: 5px;
+    font: inherit;
+}
+
+.campo:focus {
+    outline: 3px solid blue;
+    border: 2px solid blue;
+    background-color: blue;
+    outline-offset: 2px;
+}
+
+.campo:required:valid {
+    border: 2px solid green;
+}
+
+.campo:required:invalid {
+    border: 2px solid red;
+}
+
+button {
+    background-color: blue;
+    color: white;
+    border: 2px solid black;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: darkblue;
+}

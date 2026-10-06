@@ -1,0 +1,88 @@
+p {
+    color: black;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+header {
+    color: white;
+    background-color: lightblue;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+}
+
+header p {
+    color: white;
+}
+
+main {
+    margin: 20px;
+}
+
+fieldset {
+    border: 2px solid black;
+    margin: 0 0 20px;
+    padding: 15px;
+}
+
+legend {
+    font-weight: bold;
+    color: blue;
+    padding: 5px;
+}
+
+.campo {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 6px;
+    margin: 5px;
+    font: inherit;
+}
+
+.campo:focus {
+    outline: 3px solid blue;
+    border: 2px solid blue;
+    background-color: lightblue;
+    outline-offset: 2px;
+}
+
+.campo:required:valid {
+    border: 2px solid green;
+}
+
+.campo:required:invalid {
+    border: 2px solid red;
+}
+
+button {
+    background-color: blue;
+    color: white;
+    border: 2px solid black;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: darkblue;
+}
+
+#dadosFuncionario {
+    border: 2px solid black;
+    padding: 15px;
+    width: 60%;
+    box-sizing: border-box;
+    background-color: lightgray;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+}
