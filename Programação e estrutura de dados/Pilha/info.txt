@@ -1,0 +1,32 @@
+PILHA
+
+Uma pilha é uma estrutura de dados em que os elementos são inseridos e removidos pelo topo. Ela segue o princípio LIFO (do inglês, “Last In, First Out”), que significa: o último elemento a entrar é o primeiro a sair. Um exemplo cotidiano é uma pilha de pratos: o prato colocado por último é o primeiro a ser retirado.
+
+Uma forma de implementar uma pilha é usando um vetor e uma variável chamada `topo`, que indica a posição do elemento que está no alto da pilha. Quando a pilha está vazia, `topo` pode receber o valor -1, indicando que não há elementos armazenados.
+
+**Empilhar (push):** para inserir um elemento, incrementamos `topo` e armazenamos o valor na posição correspondente do vetor. Por exemplo, para inserir o valor 18:
+
+```text
+topo = topo + 1
+vetor[topo] = 18
+```
+
+Antes da inserção, é necessário verificar se ainda há espaço no vetor. Caso contrário, a pilha está cheia e a operação não pode ser concluída.
+
+**Desempilhar (pop):** para remover um elemento, verificamos se a pilha não está vazia, guardamos o valor indicado por `topo` e, em seguida, decrementamos `topo`. Se a pilha estiver vazia, não há elemento para remover; essa situação deve ser tratada, por exemplo, lançando uma exceção.
+
+**Consultar o topo (peek):** para apenas acessar o elemento que está no topo, verificamos se a pilha não está vazia e retornamos o valor armazenado em `vetor[topo]`, sem removê-lo nem alterar `topo`. Se a pilha estiver vazia, a consulta também deve ser tratada, por exemplo, com uma exceção.
+
+
+/// Atividade para preparar para avaliação
+
+Usar a pilha para verificar se uma palavra é um palindromo:
+Exemplos: Arara = Arara; Radar = Radar 
+Exemplos de frases = O lobo ama o bolo; Ame o poema
+Exemplos de numeros = 12421
+
+Emplihar e dempilhar para comparar
+string já é um vetor de caracteres
+
+Foi exigido, tem que ter um espaço para digitar qualquer coisa e para saber se é palimdromo ou não é palimdromo;
+

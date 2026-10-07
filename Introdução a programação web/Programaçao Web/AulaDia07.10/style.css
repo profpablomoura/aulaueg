@@ -1,0 +1,437 @@
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
+
+/* * seleciona todos os elementos HTML da página. */
+* {
+    box-sizing: border-box;
+}
+
+/* body representa o corpo da página e define a aparência geral do conteúdo. */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f7f6;
+    color: #173547;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+/* header representa o cabeçalho principal da página. */
+header {
+    background-color: #143447;
+    color: white;
+
+    padding: 22px 8%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* div dentro do header agrupa e alinha seus elementos internos. */
+header div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* strong destaca texto importante, aqui usado como marca ou sigla. */
+header strong {
+    background-color: #b2e1d9;
+    color: #17394d;
+
+    padding: 18px 15px;
+    border-radius: 12px;
+
+    font-size: 22px;
+}
+
+/* h1 é o título principal do cabeçalho. */
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* p dentro do cabeçalho é um parágrafo de apoio ou subtítulo. */
+header p {
+    margin: 4px 0 0;
+    font-size: 14px;
+}
+
+/* nav agrupa os links de navegação. */
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+/* a dentro de nav é um link de navegação. */
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+/* :hover aplica estilo ao link enquanto o ponteiro está sobre ele. */
+nav a:hover {
+    color: #b2e1d9;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+/* main envolve o conteúdo principal da página. */
+main {
+    width: 84%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+
+/* =========================
+   APRESENTAÇÃO
+========================= */
+
+/* #mutirao seleciona o elemento com id="mutirao", a seção de apresentação. */
+#mutirao {
+    min-height: 240px;
+    position: relative;
+}
+
+/* > seleciona filhos diretos; :first-child seleciona o primeiro parágrafo filho. */
+#mutirao>p:first-child {
+    display: inline-block;
+
+    background-color: #e0efeb;
+    color: #176f68;
+
+    padding: 7px 13px;
+    border-radius: 5px;
+
+    font-size: 12px;
+}
+
+/* h2 é o título de segundo nível dentro da seção de apresentação. */
+#mutirao h2 {
+    max-width: 600px;
+
+    font-size: 34px;
+    line-height: 1.2;
+
+    margin: 15px 0;
+}
+
+/* Seleciona parágrafos que são filhos diretos da seção de apresentação. */
+#mutirao>p {
+    max-width: 520px;
+
+    color: #496879;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   PRÓXIMO ENCONTRO
+========================= */
+
+/* aside identifica conteúdo complementar, neste caso o aviso do próximo encontro. */
+aside {
+    position: absolute;
+
+    right: 0;
+    top: 5px;
+
+    width: 325px;
+
+    background-color: #e8f0ed;
+
+    border-left: 5px solid #23877d;
+
+    padding: 25px;
+}
+
+/* Seleciona o primeiro parágrafo dentro do conteúdo complementar. */
+aside p:first-child {
+    color: #11766f;
+
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+/* h3 é o título de terceiro nível dentro do aside. */
+aside h3 {
+    font-size: 21px;
+    margin: 10px 0;
+}
+
+/* p seleciona os parágrafos com detalhes do encontro. */
+aside p {
+    font-size: 14px;
+}
+
+
+/* =========================
+   TÍTULO DOS SERVIÇOS
+========================= */
+
+/* #servicos seleciona a seção identificada pelo id="servicos". */
+#servicos {
+    margin-top: 25px;
+}
+
+/* Primeiro parágrafo filho direto: o rótulo da seção de serviços. */
+#servicos>p:first-child {
+    color: #11766f;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+/* h2 filho direto é o título da seção de serviços. */
+#servicos>h2 {
+    font-size: 26px;
+    margin: 8px 0;
+}
+
+
+/* =========================
+   CARDS DOS SERVIÇOS
+========================= */
+
+/* article representa um conteúdo independente; aqui, cada cartão de serviço. */
+article {
+    display: inline-block;
+    vertical-align: top;
+
+    width: 31.8%;
+    min-height: 235px;
+
+    margin: 20px 1.2% 20px 0;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    border: 1px solid;
+}
+
+/* :last-child seleciona o article que é o último filho de seu elemento pai. */
+article:last-child {
+    margin-right: 0;
+}
+
+/* :nth-of-type(1) seleciona o primeiro article entre os elementos irmãos. */
+article:nth-of-type(1) {
+    background-color: #e6f1ed;
+    border-color: #bdd9d2;
+}
+
+/* :nth-of-type(2) seleciona o segundo article entre os elementos irmãos. */
+article:nth-of-type(2) {
+    background-color: #fff3dc;
+    border-color: #e6d3a8;
+}
+
+/* :nth-of-type(3) seleciona o terceiro article entre os elementos irmãos. */
+article:nth-of-type(3) {
+    background-color: #f8e9e5;
+    border-color: #e4c5be;
+}
+
+/* h3 é o título de cada cartão de serviço. */
+article h3 {
+    font-size: 21px;
+}
+
+/* p seleciona os parágrafos com a descrição dos serviços. */
+article p {
+    line-height: 1.5;
+    color: #3e596b;
+}
+
+/* Seleciona o último parágrafo do cartão, usado como etiqueta. */
+article p:last-child {
+    display: inline-block;
+
+    border: 1px solid #6d8889;
+    border-radius: 5px;
+
+    padding: 5px 10px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    color: #12324a;
+}
+
+
+/* =========================
+   FORMULÁRIO
+========================= */
+
+/* #inscricao seleciona a seção que contém o formulário de inscrição. */
+#inscricao {
+    background-color: white;
+
+    border: 1px solid #d4e0e5;
+    border-radius: 15px;
+
+    padding: 28px;
+
+    margin-top: 10px;
+}
+
+/* Primeiro parágrafo filho direto da seção, usado como rótulo. */
+#inscricao>p:first-child {
+    color: #11766f;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+/* h2 é o título da seção de inscrição. */
+#inscricao h2 {
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+/* form agrupa os campos e controles que enviam os dados da inscrição. */
+form {
+    margin-top: 20px;
+}
+
+/* div dentro do form agrupa cada campo, como seu label e controle. */
+form div {
+    display: inline-block;
+    vertical-align: top;
+
+    width: 48%;
+    margin-right: 2%;
+}
+
+/* :nth-child(2) seleciona a segunda div filha do formulário. */
+form div:nth-child(2) {
+    margin-right: 0;
+}
+
+/* label descreve o propósito de um campo do formulário. */
+label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* input recebe dados digitados; select oferece opções para seleção. */
+input,
+select {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 8px;
+
+    border: 1px solid #aebfcb;
+    border-radius: 6px;
+
+    font-size: 14px;
+}
+
+/* select é o menu de opções do formulário. */
+select {
+    background-color: white;
+}
+
+/* button representa um botão acionável, usado para enviar a inscrição. */
+button {
+    padding: 14px 30px;
+
+    background-color: #1b756d;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+/* Muda a aparência do botão enquanto o ponteiro está sobre ele. */
+button:hover {
+    background-color: #155f58;
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+/* footer representa o rodapé com informações finais da página. */
+footer {
+    width: 84%;
+    max-width: 1200px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #526a7b;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+/* @media aplica as regras seguintes em telas com largura de até 900px. */
+@media (max-width: 900px) {
+
+    /* Organiza o cabeçalho em coluna em telas menores. */
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Ajusta a largura do conteúdo principal em telas menores. */
+    main {
+        width: 90%;
+    }
+
+    /* Recoloca o conteúdo complementar no fluxo normal em telas menores. */
+    aside {
+        position: static;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    /* Faz cada cartão de serviço ocupar uma linha em telas menores. */
+    article {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    /* Empilha os grupos de campos e adiciona espaço entre eles. */
+    form div {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    /* Organiza as informações do rodapé em coluna em telas menores. */
+    footer {
+        width: 90%;
+        flex-direction: column;
+    }
+}
