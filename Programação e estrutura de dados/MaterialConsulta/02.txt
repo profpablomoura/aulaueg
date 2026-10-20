@@ -1,0 +1,430 @@
+10 QUESTOES PROVAVEIS - PROGRAMACAO E ESTRUTURA DE DADOS
+Curso: Sistemas para Internet - 2o periodo
+Linguagem: JavaScript
+Conteudos: classes, objetos, metodos, pilha, strings, loops e tratamento de excecoes
+===============================================================
+
+OBSERVACAO
+----------
+Estas sao questoes de treino inspiradas no formato dos enunciados enviados (requisitos de sistema, atributos, calculos e exibicao). Nao sao previsoes garantidas da prova.
+Os exemplos usam JavaScript. Quando a questao envolver a classe Pilha fornecida pelo professor, considere que pilha.js ja existe e NAO deve ser alterado.
+
+---------------------------------------------------------------
+QUESTAO 1 - CADASTRO DE ALUNO E CALCULO DA MEDIA
+---------------------------------------------------------------
+Enunciado:
+Crie uma classe Aluno com nome, nota1 e nota2. Implemente um metodo calcularMedia() e um metodo situacao() que retorne "Aprovado" para media maior ou igual a 6 e "Reprovado" caso contrario. Crie um objeto e mostre os dados.
+
+Resposta (JavaScript):
+class Aluno {
+    constructor(nome, nota1, nota2) {
+        this.nome = nome;
+        this.nota1 = nota1;
+        this.nota2 = nota2;
+    }
+
+    calcularMedia() {
+        return (this.nota1 + this.nota2) / 2;
+    }
+
+    situacao() {
+        if (this.calcularMedia() >= 6) {
+            return "Aprovado";
+        } else {
+            return "Reprovado";
+        }
+    }
+
+    exibirDados() {
+        console.log("Nome: " + this.nome);
+        console.log("Media: " + this.calcularMedia());
+        console.log("Situacao: " + this.situacao());
+    }
+}
+
+const aluno = new Aluno("Marina", 8, 7);
+aluno.exibirDados();
+
+---------------------------------------------------------------
+QUESTAO 2 - CLASSE PACIENTE E CALCULO DE IMC
+---------------------------------------------------------------
+Enunciado:
+Crie uma classe Paciente com nome, peso e altura. Calcule o IMC usando peso / (altura * altura) e classifique:
+abaixo de 20: abaixo do peso ideal;
+de 20 ate 25: peso normal;
+acima de 25 ate 30: excesso de peso;
+acima de 30 ate 35: obesidade;
+acima de 35: obesidade morbida.
+
+Resposta:
+class Paciente {
+    constructor(nome, peso, altura) {
+        this.nome = nome;
+        this.peso = peso;
+        this.altura = altura;
+    }
+
+    calcularIMC() {
+        if (this.altura <= 0) {
+            throw new Error("A altura deve ser maior que zero.");
+        }
+        return this.peso / (this.altura * this.altura);
+    }
+
+    classificarIMC() {
+        const imc = this.calcularIMC();
+
+        if (imc < 20) {
+            return "Abaixo do peso ideal";
+        } else if (imc <= 25) {
+            return "Peso normal";
+        } else if (imc <= 30) {
+            return "Excesso de peso";
+        } else if (imc <= 35) {
+            return "Obesidade";
+        } else {
+            return "Obesidade morbida";
+        }
+    }
+}
+
+try {
+    const paciente = new Paciente("Joao", 70, 1.75);
+    console.log("IMC:", paciente.calcularIMC().toFixed(2));
+    console.log("Classificacao:", paciente.classificarIMC());
+} catch (erro) {
+    console.log("Erro:", erro.message);
+}
+
+---------------------------------------------------------------
+QUESTAO 3 - CLASSE PRODUTO E CONTROLE DE ESTOQUE
+---------------------------------------------------------------
+Enunciado:
+Crie uma classe Produto com nome, preco e quantidade. Crie metodos para calcular o valor total em estoque, adicionar unidades e vender unidades. Nao permita vender mais unidades do que existem no estoque.
+
+Resposta:
+class Produto {
+    constructor(nome, preco, quantidade) {
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidade = quantidade;
+    }
+
+    calcularValorEstoque() {
+        return this.preco * this.quantidade;
+    }
+
+    adicionar(unidades) {
+        if (unidades <= 0) {
+            throw new Error("A quantidade adicionada deve ser positiva.");
+        }
+        this.quantidade += unidades;
+    }
+
+    vender(unidades) {
+        if (unidades <= 0) {
+            throw new Error("A quantidade vendida deve ser positiva.");
+        }
+        if (unidades > this.quantidade) {
+            throw new Error("Estoque insuficiente.");
+        }
+        this.quantidade -= unidades;
+    }
+}
+
+const produto = new Produto("Caderno", 15, 10);
+try {
+    produto.vender(3);
+    console.log("Unidades restantes:", produto.quantidade);
+    console.log("Valor em estoque:", produto.calcularValorEstoque());
+} catch (erro) {
+    console.log(erro.message);
+}
+
+---------------------------------------------------------------
+QUESTAO 4 - CONTA BANCARIA COM TRATAMENTO DE EXCECOES
+---------------------------------------------------------------
+Enunciado:
+Crie uma classe ContaBancaria com titular e saldo. Implemente depositar e sacar. O deposito deve ser positivo e o saque nao pode ser maior que o saldo. Use throw new Error() e try/catch para tratar os erros.
+
+Resposta:
+class ContaBancaria {
+    constructor(titular, saldoInicial) {
+        this.titular = titular;
+        this.saldo = saldoInicial;
+    }
+
+    depositar(valor) {
+        if (valor <= 0) {
+            throw new Error("O deposito deve ser maior que zero.");
+        }
+        this.saldo += valor;
+    }
+
+    sacar(valor) {
+        if (valor <= 0) {
+            throw new Error("O saque deve ser maior que zero.");
+        }
+        if (valor > this.saldo) {
+            throw new Error("Saldo insuficiente.");
+        }
+        this.saldo -= valor;
+    }
+
+    consultarSaldo() {
+        return this.saldo;
+    }
+}
+
+const conta = new ContaBancaria("Carlos", 200);
+try {
+    conta.depositar(50);
+    conta.sacar(80);
+    console.log("Saldo:", conta.consultarSaldo());
+} catch (erro) {
+    console.log("Operacao nao realizada:", erro.message);
+}
+
+---------------------------------------------------------------
+QUESTAO 5 - VERIFICAR PALINDROMO USANDO PILHA
+---------------------------------------------------------------
+Enunciado:
+Receba uma palavra, frase ou numero e use a pilha para descobrir se e palindromo. Ignore espacos, pontuacao e diferenca entre maiusculas e minusculas. Use o arquivo pilha.js fornecido, sem modifica-lo.
+
+Resposta para app.js:
+import { Pilha } from "./pilha.js";
+
+function verificarPalindromo(texto) {
+    const palavra = texto.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+    if (palavra.length === 0) {
+        throw new Error("Digite uma palavra, frase ou numero.");
+    }
+
+    const pilha = new Pilha();
+
+    for (let i = 0; i < palavra.length; i++) {
+        pilha.empilhar(palavra[i]);
+    }
+
+    let invertida = "";
+
+    while (!pilha.estaVazia()) {
+        invertida += pilha.acessarTopo();
+        pilha.desempilhar();
+    }
+
+    return palavra === invertida;
+}
+
+try {
+    console.log(verificarPalindromo("Arara")); // true
+    console.log(verificarPalindromo("Ame o poema")); // true
+    console.log(verificarPalindromo("Casa")); // false
+} catch (erro) {
+    console.log(erro.message);
+}
+
+Se for uma pagina HTML, o app.js pode capturar o clique do botao e mostrar o retorno com textContent, como no exercicio praticado.
+
+---------------------------------------------------------------
+QUESTAO 6 - INVERTER UMA STRING USANDO PILHA
+---------------------------------------------------------------
+Enunciado:
+Receba uma palavra e utilize uma pilha para retornar os caracteres na ordem inversa.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+function inverterTexto(texto) {
+    const pilha = new Pilha();
+
+    for (let i = 0; i < texto.length; i++) {
+        pilha.empilhar(texto[i]);
+    }
+
+    let invertido = "";
+
+    while (!pilha.estaVazia()) {
+        invertido += pilha.acessarTopo();
+        pilha.desempilhar();
+    }
+
+    return invertido;
+}
+
+console.log(inverterTexto("casa")); // asac
+console.log(inverterTexto("abacaxi")); // ixacaba
+
+---------------------------------------------------------------
+QUESTAO 7 - VERIFICAR PARENTESES BALANCEADOS COM PILHA
+---------------------------------------------------------------
+Enunciado:
+Receba uma expressao e verifique se todos os parenteses estao balanceados. Exemplos: "(a+b)" e balanceada; "((a+b)" nao e balanceada. Use uma pilha.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+function parentesesBalanceados(expressao) {
+    const pilha = new Pilha();
+
+    for (let i = 0; i < expressao.length; i++) {
+        if (expressao[i] === "(") {
+            pilha.empilhar("(");
+        } else if (expressao[i] === ")") {
+            if (pilha.estaVazia()) {
+                return false;
+            }
+            pilha.desempilhar();
+        }
+    }
+
+    return pilha.estaVazia();
+}
+
+console.log(parentesesBalanceados("(a+b)")); // true
+console.log(parentesesBalanceados("((a+b)")); // false
+console.log(parentesesBalanceados("(a+b))")); // false
+
+Explicacao:
+- Ao encontrar "(", empilha.
+- Ao encontrar ")", se a pilha estiver vazia, existe fechamento sem abertura.
+- Caso contrario, desempilha uma abertura.
+- No fim, a pilha precisa estar vazia.
+
+---------------------------------------------------------------
+QUESTAO 8 - CONTAR VOGAIS DE UM TEXTO
+---------------------------------------------------------------
+Enunciado:
+Crie uma funcao que receba um texto e conte quantas vogais existem nele, ignorando maiusculas e minusculas.
+
+Resposta:
+function contarVogais(texto) {
+    const textoMinusculo = texto.toLowerCase();
+    let quantidade = 0;
+
+    for (let i = 0; i < textoMinusculo.length; i++) {
+        if ("aeiou".includes(textoMinusculo[i])) {
+            quantidade++;
+        }
+    }
+
+    return quantidade;
+}
+
+console.log(contarVogais("Programacao")); // 5
+console.log(contarVogais("ESTRUTURA DE DADOS")); // 7
+
+---------------------------------------------------------------
+QUESTAO 9 - CLASSE FUNCIONARIO E CALCULO DE SALARIO
+---------------------------------------------------------------
+Enunciado:
+Crie uma classe Funcionario com matricula, nome, salarioBase e gratificacao. Calcule o salario bruto, desconto percentual e salario liquido. Para este exemplo de treino, use desconto fixo de 10% sobre o salario bruto.
+
+Resposta:
+class Funcionario {
+    constructor(matricula, nome, salarioBase, gratificacao) {
+        this.matricula = matricula;
+        this.nome = nome;
+        this.salarioBase = salarioBase;
+        this.gratificacao = gratificacao;
+    }
+
+    calcularSalarioBruto() {
+        return this.salarioBase + this.gratificacao;
+    }
+
+    calcularDesconto() {
+        return this.calcularSalarioBruto() * 0.10;
+    }
+
+    calcularSalarioLiquido() {
+        return this.calcularSalarioBruto() - this.calcularDesconto();
+    }
+
+    gerarContracheque() {
+        console.log("Matricula:", this.matricula);
+        console.log("Nome:", this.nome);
+        console.log("Salario base: R$", this.salarioBase.toFixed(2));
+        console.log("Gratificacao: R$", this.gratificacao.toFixed(2));
+        console.log("Salario bruto: R$", this.calcularSalarioBruto().toFixed(2));
+        console.log("Desconto: R$", this.calcularDesconto().toFixed(2));
+        console.log("Salario liquido: R$", this.calcularSalarioLiquido().toFixed(2));
+    }
+}
+
+const funcionario = new Funcionario("F001", "Ana Souza", 2500, 500);
+funcionario.gerarContracheque();
+
+Nota: o desconto de 10% e apenas uma regra simplificada desta questao de treino. Se o enunciado fornecer faixas de INSS/IRPF ou gratificacao por producao, use exatamente as tabelas do enunciado. No PDF de contracheque enviado, as faixas e gratificacoes sao especificas e devem ser implementadas conforme forem solicitadas.
+
+---------------------------------------------------------------
+QUESTAO 10 - CLASSE COM ATRIBUTO PRIVADO E EXCECAO
+---------------------------------------------------------------
+Enunciado:
+Crie uma classe Cofre com atributo privado #codigo. O metodo abrir(codigo) deve permitir acesso somente quando o codigo estiver correto; caso contrario, deve lancar uma excecao. Trate a excecao com try/catch.
+
+Resposta:
+class Cofre {
+    #codigo;
+
+    constructor(codigo) {
+        this.#codigo = codigo;
+    }
+
+    abrir(codigoInformado) {
+        if (codigoInformado !== this.#codigo) {
+            throw new Error("Codigo incorreto.");
+        }
+        return "Cofre aberto.";
+    }
+}
+
+const cofre = new Cofre("1234");
+
+try {
+    console.log(cofre.abrir("0000"));
+} catch (erro) {
+    console.log("Falha:", erro.message);
+}
+
+try {
+    console.log(cofre.abrir("1234"));
+} catch (erro) {
+    console.log("Falha:", erro.message);
+}
+
+---------------------------------------------------------------
+REVISAO RAPIDA: O QUE MEMORIZAR
+---------------------------------------------------------------
+CLASSE: modelo para criar objetos.
+OBJETO: instancia criada com new.
+CONSTRUCTOR: inicializa os dados do objeto.
+THIS: referencia o objeto atual.
+ATRIBUTO: dado guardado no objeto.
+METODO: funcao dentro da classe.
+ATRIBUTO PRIVADO: nome com #; so pode ser acessado dentro da classe.
+TRY: bloco em que tentamos executar codigo que pode falhar.
+CATCH: recebe e trata a excecao.
+THROW: lanca uma excecao manualmente.
+NEW ERROR("mensagem"): cria um erro com mensagem.
+FINALLY: bloco que executa ao final, tenha ocorrido erro ou nao.
+PILHA: estrutura LIFO (ultimo a entrar, primeiro a sair).
+FOR: repeticao geralmente usada para percorrer indices.
+WHILE: repeticao enquanto uma condicao for verdadeira.
+RETURN: devolve um valor da funcao.
+TEXTCONTENT: altera o texto exibido em um elemento HTML.
+===: compara igualdade sem conversao de tipo.
+
+DICAS PARA RESOLVER ENUNCIADOS
+------------------------------
+1. Liste os dados pedidos: eles normalmente viram atributos da classe.
+2. Identifique os calculos pedidos: cada calculo pode virar um metodo.
+3. Identifique as regras e limites: use if/else.
+4. Se o enunciado pedir para impedir uma operacao invalida, use throw new Error().
+5. Se precisar tratar o erro, chame o codigo dentro de try/catch.
+6. Se o enunciado pedir pilha, use empilhar(), acessarTopo(), desempilhar() e estaVazia().
+7. Leia o nome exato dos arquivos e mantenha os imports corretos.
+8. Nao altere pilha.js se o professor proibiu.
+9. Teste pelo menos um caso valido e um invalido.
+10. Siga as regras e tabelas fornecidas no proprio enunciado.

@@ -1,0 +1,254 @@
+GUIA DE ESTUDOS - PALINDROMOS COM PILHA EM JAVASCRIPT
+=========================================================
+
+OBJETIVO DA ATIVIDADE
+---------------------
+Criar um programa que permita digitar uma palavra, frase ou numero e informe se e um palindromo.
+O programa usa uma pilha para inverter a ordem dos caracteres e comparar com o texto original.
+
+1. O QUE E UM PALINDROMO?
+-------------------------
+Um palindromo e uma palavra, frase ou sequencia numerica que continua igual quando lida de tras para frente.
+
+Exemplos:
+- arara: e palindromo
+- radar: e palindromo
+- 12421: e palindromo
+- casa: nao e palindromo
+- Ame o poema: e palindromo, ignorando os espacos
+
+2. O QUE E UMA PILHA?
+---------------------
+Uma pilha funciona como uma pilha de pratos: o ultimo elemento colocado e o primeiro a sair.
+Esse funcionamento e chamado LIFO (Last In, First Out).
+
+Metodos da pilha:
+- new Pilha(): cria uma pilha vazia.
+- empilhar(elemento): adiciona um elemento ao topo.
+- acessarTopo(): consulta o elemento do topo sem retira-lo.
+- desempilhar(): retira o elemento do topo.
+- estaVazia(): informa se a pilha esta vazia.
+- tamanho(): informa a quantidade de elementos.
+- limpar(): esvazia a pilha.
+
+IMPORTANTE: O arquivo pilha.js foi fornecido pelo professor e nao deve ser alterado.
+
+3. PARA QUE SERVE CADA ARQUIVO?
+-------------------------------
+index.html: estrutura da pagina, campo de texto, botao e local do resultado.
+style.css: aparencia da pagina, cores, tamanhos, margens e bordas.
+app.js: logica do programa; recebe o texto, usa a pilha e compara as palavras.
+pilha.js: classe Pilha fornecida pelo professor.
+
+O HTML mostra, o CSS estiliza, o app.js calcula e o pilha.js fornece a pilha.
+
+4. ENTENDENDO O HTML
+--------------------
+<link rel="stylesheet" href="style.css">
+Conecta o HTML ao arquivo de estilos.
+
+<script type="module" src="app.js" defer></script>
+Conecta o HTML ao JavaScript.
+type="module" permite usar import e export.
+src="app.js" indica o arquivo que sera executado.
+defer permite que o HTML seja processado antes da execucao do script.
+
+<input type="text" id="texto" placeholder="Digite aqui">
+Cria o campo onde o usuario digita.
+id="texto" permite que o JavaScript encontre esse campo.
+placeholder mostra uma orientacao dentro do campo.
+
+<button id="verificar">Verificar</button>
+Cria o botao que inicia a verificacao.
+
+<p id="resultado"></p>
+Local onde o JavaScript mostra a resposta.
+
+Os id do HTML precisam corresponder aos nomes usados no JavaScript.
+
+5. ENTENDENDO O CSS
+-------------------
+O CSS controla apenas a aparencia da pagina, nao verifica palindromos.
+
+body: seleciona o corpo da pagina.
+.container: seleciona um elemento que tem a classe container.
+width: define a largura.
+margin: define a margem externa.
+padding: define o espaco interno.
+text-align: alinha o texto.
+background-color: define a cor de fundo.
+button:hover: aplica um estilo quando o mouse esta sobre o botao.
+
+6. ENTENDENDO O APP.JS PASSO A PASSO
+------------------------------------
+
+PASSO 1 - Importar a pilha
+--------------------------
+import { Pilha } from "./pilha.js";
+
+Importa a classe Pilha do arquivo pilha.js, que esta na mesma pasta.
+Nao criamos outra implementacao nem alteramos o arquivo do professor.
+
+PASSO 2 - Encontrar os elementos HTML
+-------------------------------------
+const texto = document.getElementById("texto");
+const verificar = document.getElementById("verificar");
+const resultado = document.getElementById("resultado");
+
+document.getElementById() encontra um elemento pelo id.
+texto: campo de entrada.
+verificar: botao.
+resultado: local onde aparece a resposta.
+
+const declara uma variavel que nao sera reatribuida a outro valor.
+
+PASSO 3 - Detectar o clique
+---------------------------
+verificar.addEventListener("click", function () {
+    // codigo executado quando o botao e clicado
+});
+
+addEventListener registra um evento.
+"click" e o evento de clique.
+function () define a funcao executada quando o clique acontece.
+O codigo entre chaves e executado ao clicar.
+
+PASSO 4 - Obter e preparar o texto
+----------------------------------
+let palavra = texto.value.toLowerCase();
+palavra = palavra.replace(/[^a-z0-9]/g, "");
+
+texto.value obtem o que foi digitado.
+toLowerCase() converte as letras para minusculas.
+replace() substitui partes do texto.
+A expressao /[^a-z0-9]/g encontra caracteres que nao sejam letras de a a z ou numeros de 0 a 9.
+"" significa substituir por nada, removendo esses caracteres.
+g significa que a substituicao ocorre em todas as ocorrencias.
+
+Exemplos:
+"Arara" -> "arara"
+"Ame o poema" -> "ameopoema"
+"12.421" -> "12421"
+
+Observacao: essa expressao nao contempla todas as letras acentuadas do portugues, mas funciona para os exemplos desta atividade.
+
+PASSO 5 - Verificar se o campo esta vazio
+-----------------------------------------
+if (palavra.length === 0) {
+    resultado.textContent = "Digite alguma coisa!";
+    return;
+}
+
+if significa "se".
+length informa a quantidade de caracteres.
+=== 0 verifica se a quantidade e exatamente zero.
+textContent define o texto exibido no elemento.
+return encerra a funcao naquele momento.
+
+PASSO 6 - Criar a pilha
+-----------------------
+const pilha = new Pilha();
+
+new Pilha() cria um objeto da classe Pilha.
+
+PASSO 7 - Empilhar cada caractere
+---------------------------------
+for (let i = 0; i < palavra.length; i++) {
+    pilha.empilhar(palavra[i]);
+}
+
+let i = 0: comeca na posicao zero.
+i < palavra.length: repete enquanto i for menor que o tamanho da palavra.
+i++: aumenta i em um a cada repeticao.
+palavra[i]: acessa o caractere na posicao i.
+empilhar(palavra[i]): coloca o caractere no topo da pilha.
+
+Os indices das strings em JavaScript comecam em zero.
+
+PASSO 8 - Criar a string invertida
+----------------------------------
+let palavraInvertida = "";
+
+Cria uma string vazia que recebera os caracteres retirados da pilha.
+Usamos let porque o valor sera atualizado.
+
+PASSO 9 - Desempilhar e formar a palavra invertida
+--------------------------------------------------
+while (!pilha.estaVazia()) {
+    palavraInvertida += pilha.acessarTopo();
+    pilha.desempilhar();
+}
+
+while repete enquanto a condicao for verdadeira.
+! significa negacao.
+!pilha.estaVazia() significa "enquanto a pilha nao estiver vazia".
+acessarTopo() consulta o caractere do topo.
++= acrescenta o caractere a palavraInvertida.
+desempilhar() retira o elemento do topo.
+
+A ordem e importante: primeiro consultamos o topo e depois desempilhamos, porque o metodo desempilhar() do professor nao retorna o caractere removido.
+
+PASSO 10 - Comparar e mostrar o resultado
+-----------------------------------------
+if (palavra === palavraInvertida) {
+    resultado.textContent = "É um palíndromo!";
+} else {
+    resultado.textContent = "Não é um palíndromo!";
+}
+
+=== compara se as duas strings sao iguais.
+if executa o primeiro bloco se forem iguais.
+else executa o outro bloco se forem diferentes.
+textContent mostra a mensagem na pagina.
+
+7. EXEMPLO COMPLETO: CASA
+--------------------------
+Texto digitado: CASA
+Depois de preparar: casa
+A pilha recebe: c, a, s, a
+A pilha devolve: a, s, a, c
+Palavra original: casa
+Palavra invertida: asac
+Como sao diferentes, o resultado e: Nao e um palindromo.
+
+8. EXEMPLO COMPLETO: ARARA
+--------------------------
+Texto digitado: ARARA
+Depois de preparar: arara
+A pilha recebe: a, r, a, r, a
+A pilha devolve: a, r, a, r, a
+Palavra original: arara
+Palavra invertida: arara
+Como sao iguais, o resultado e: E um palindromo.
+
+9. COMO TESTAR
+--------------
+1. Salve os arquivos index.html, style.css e app.js.
+2. Mantenha pilha.js na mesma pasta e nao altere seu codigo.
+3. Abra index.html usando o Live Server no VS Code.
+4. Digite um exemplo e clique em Verificar.
+
+Exemplos de teste:
+- Arara: palindromo.
+- Radar: palindromo.
+- O lobo ama o bolo: palindromo.
+- Ame o poema: palindromo.
+- 12421: palindromo.
+- Casa: nao e palindromo.
+
+10. RESUMO PARA MEMORIZAR
+-------------------------
+1. Importar a classe Pilha.
+2. Capturar o texto digitado no HTML.
+3. Converter para minusculas e remover espacos e pontuacao.
+4. Verificar se a entrada esta vazia.
+5. Criar uma pilha.
+6. Usar for para empilhar cada caractere.
+7. Usar while para desempilhar e montar a palavra invertida.
+8. Comparar a palavra original com a invertida usando ===.
+9. Mostrar o resultado no HTML com textContent.
+
+IDEIA PRINCIPAL
+---------------
+A pilha devolve os caracteres na ordem inversa daquela em que foram inseridos.
+Comparando a sequencia invertida com o texto original, descobrimos se e um palindromo.

@@ -1,0 +1,505 @@
+GUIA RAPIDO PARA PROVA DE JAVASCRIPT
+Classes, tratamento de excecoes e pilhas/palindromos
+===================================================
+
+COMO USAR ESTE GUIA
+-------------------
+Este material e uma consulta rapida para revisar conceitos e exemplos. Os exemplos sao modelos de estudo; adapte nomes e valores conforme o enunciado da prova.
+
+PARTE 1 - JAVASCRIPT: LEMBRETES IMPORTANTES
+------------------------------------------
+Variaveis:
+let nome = "Ana";       // pode receber outro valor
+const idade = 18;       // nao pode ser reatribuida
+var antigo = true;      // forma antiga; prefira let/const
+
+Tipos comuns:
+"texto"       // string
+25            // number
+true / false  // boolean
+[1, 2, 3]     // array
+{ nome: "Ana" } // objeto
+
+Comparacoes:
+===   igual em valor e tipo
+!==   diferente em valor ou tipo
+> < >= <=   comparacoes numericas
+&&    E logico
+||    OU logico
+!     negacao
+
+Condicionais:
+if (condicao) {
+    // executa se verdadeira
+} else {
+    // executa se falsa
+}
+
+Repeticao for:
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+Repeticao while:
+while (condicao) {
+    // repete enquanto for verdadeira
+}
+
+Funcoes:
+function somar(a, b) {
+    return a + b;
+}
+console.log(somar(2, 3)); // 5
+
+String:
+let texto = "JavaScript";
+texto.length;          // tamanho
+texto[0];              // primeiro caractere: J
+texto.toLowerCase();   // minusculas
+texto.toUpperCase();   // maiusculas
+texto.trim();          // remove espacos do inicio e fim
+texto.includes("Script"); // true
+
+Arrays:
+let numeros = [10, 20];
+numeros.push(30);      // adiciona ao final
+numeros.length;        // quantidade
+numeros[0];            // primeiro elemento
+
+DOM basico:
+const campo = document.getElementById("entrada");
+const botao = document.getElementById("botao");
+const saida = document.getElementById("saida");
+
+botao.addEventListener("click", function () {
+    const valor = campo.value;
+    saida.textContent = valor;
+});
+
+Importar classe de outro arquivo:
+import { Pilha } from "./pilha.js";
+Para usar import/export no navegador, carregue o arquivo com <script type="module" src="app.js"></script>.
+
+PARTE 2 - CLASSES EM JAVASCRIPT
+-------------------------------
+Uma classe e um modelo para criar objetos. O constructor prepara o objeto quando usamos new.
+
+Exemplo:
+class Pessoa {
+    constructor(nome, idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    apresentar() {
+        return "Meu nome e " + this.nome;
+    }
+}
+
+const pessoa1 = new Pessoa("Ana", 18);
+console.log(pessoa1.apresentar()); // Meu nome e Ana
+
+Conceitos:
+- class Pessoa: declara uma classe.
+- constructor(...): executa ao criar um objeto com new.
+- this: refere-se ao objeto atual.
+- this.nome = nome: guarda o parametro no objeto.
+- new Pessoa(...): cria uma instancia/objeto.
+- apresentar(): metodo da classe.
+- return: devolve um valor.
+
+Atributos privados:
+class Conta {
+    #saldo;
+
+    constructor(saldoInicial) {
+        this.#saldo = saldoInicial;
+    }
+
+    consultarSaldo() {
+        return this.#saldo;
+    }
+}
+const conta = new Conta(100);
+console.log(conta.consultarSaldo()); // 100
+// conta.#saldo daria erro fora da classe: o atributo e privado.
+
+Heranca (se tiver sido estudada):
+class Animal {
+    falar() {
+        return "Som";
+    }
+}
+class Cachorro extends Animal {
+    latir() {
+        return "Au au";
+    }
+}
+const cachorro = new Cachorro();
+console.log(cachorro.falar()); // Som
+console.log(cachorro.latir()); // Au au
+
+PARTE 3 - TRATAMENTO DE EXCECOES
+--------------------------------
+Excecao e um erro/situacao inesperada que pode acontecer durante a execucao. try/catch permite tratar o erro sem deixar a execucao falhar sem explicacao.
+
+Estrutura:
+try {
+    // codigo que pode gerar erro
+} catch (erro) {
+    // o que fazer se houver erro
+}
+
+Exemplo:
+try {
+    let resultado = 10 / 0;
+    console.log(resultado);
+} catch (erro) {
+    console.log("Ocorreu um erro:", erro.message);
+}
+Observacao: em JavaScript, 10 / 0 resulta em Infinity e nao gera excecao automaticamente.
+
+Exemplo real com throw:
+function dividir(a, b) {
+    if (b === 0) {
+        throw new Error("Nao e permitido dividir por zero.");
+    }
+    return a / b;
+}
+
+try {
+    console.log(dividir(10, 0));
+} catch (erro) {
+    console.log(erro.message); // Nao e permitido dividir por zero.
+}
+
+Palavras importantes:
+- try: tenta executar o codigo.
+- catch: recebe e trata a excecao.
+- throw: lanca uma excecao manualmente.
+- new Error("mensagem"): cria um objeto de erro.
+- erro.message: acessa a mensagem do erro.
+- finally: executa ao final, havendo erro ou nao.
+
+Exemplo com finally:
+try {
+    console.log("Executando");
+} catch (erro) {
+    console.log("Erro:", erro.message);
+} finally {
+    console.log("Este trecho sempre executa");
+}
+
+Importante: catch so captura erros que acontecem dentro do try. Se usar throw sem um try/catch apropriado, o erro pode interromper a execucao.
+
+PARTE 4 - A PILHA DA ATIVIDADE
+------------------------------
+A pilha usa LIFO: Last In, First Out (ultimo que entra, primeiro que sai).
+
+No arquivo pilha.js fornecido pelo professor:
+- estaVazia(): retorna true se a pilha estiver vazia.
+- tamanho(): quantidade de elementos.
+- empilhar(elemento): coloca elemento no topo.
+- acessarTopo(): retorna o elemento do topo; lanca Error se a pilha estiver vazia.
+- desempilhar(): retira o elemento do topo; lanca Error se estiver vazia.
+- limpar(): esvazia a pilha.
+
+ATENCAO: no codigo fornecido, desempilhar() diminui o indice do topo, mas nao retorna o elemento. Por isso, primeiro use acessarTopo() e depois desempilhar().
+
+Exemplo:
+const pilha = new Pilha();
+pilha.empilhar("A");
+pilha.empilhar("B");
+console.log(pilha.acessarTopo()); // B
+pilha.desempilhar();
+console.log(pilha.acessarTopo()); // A
+
+Tratando a excecao da pilha:
+try {
+    const pilha = new Pilha();
+    console.log(pilha.acessarTopo());
+} catch (erro) {
+    console.log("Erro:", erro.message); // A pilha esta vazia
+}
+
+PARTE 5 - PALINDROMOS COM PILHA
+-------------------------------
+Palindromo: texto que fica igual quando lido ao contrario.
+Exemplos: arara, radar, 12421, "Ame o poema" (ignorando espacos).
+
+Logica:
+1. Obter o texto.
+2. Normalizar: minusculas e remover espacos/pontuacao.
+3. Verificar se ficou vazio.
+4. Criar pilha.
+5. Empilhar cada caractere com for.
+6. Desempilhar usando while, formando textoInvertido.
+7. Comparar texto original e invertido.
+8. Mostrar o resultado.
+
+Exemplo de app.js:
+import { Pilha } from "./pilha.js";
+
+const campo = document.getElementById("texto");
+const botao = document.getElementById("verificar");
+const resultado = document.getElementById("resultado");
+
+botao.addEventListener("click", function () {
+    let palavra = campo.value.toLowerCase();
+    palavra = palavra.replace(/[^a-z0-9]/g, "");
+
+    if (palavra.length === 0) {
+        resultado.textContent = "Digite alguma coisa!";
+        return;
+    }
+
+    const pilha = new Pilha();
+
+    for (let i = 0; i < palavra.length; i++) {
+        pilha.empilhar(palavra[i]);
+    }
+
+    let invertida = "";
+
+    while (!pilha.estaVazia()) {
+        invertida += pilha.acessarTopo();
+        pilha.desempilhar();
+    }
+
+    if (palavra === invertida) {
+        resultado.textContent = "E um palindromo!";
+    } else {
+        resultado.textContent = "Nao e um palindromo!";
+    }
+});
+
+PARTE 6 - 20 POSSIVEIS QUESTOES COM RESPOSTAS
+=============================================
+
+QUESTAO 1 - O que e uma classe?
+Resposta:
+Uma classe e um modelo para criar objetos, definindo atributos e metodos.
+
+QUESTAO 2 - Crie uma classe Pessoa com nome e um metodo apresentar().
+Resposta:
+class Pessoa {
+    constructor(nome) {
+        this.nome = nome;
+    }
+
+    apresentar() {
+        return "Ola, meu nome e " + this.nome;
+    }
+}
+const pessoa = new Pessoa("Ana");
+console.log(pessoa.apresentar());
+
+QUESTAO 3 - Qual e a funcao do constructor?
+Resposta:
+O constructor e executado quando um objeto e criado com new e prepara seus dados iniciais.
+
+QUESTAO 4 - O que significa this?
+Resposta:
+this referencia o objeto atual. Em this.nome = nome, o parametro e guardado no objeto.
+
+QUESTAO 5 - Crie uma classe Retangulo que calcule a area.
+Resposta:
+class Retangulo {
+    constructor(largura, altura) {
+        this.largura = largura;
+        this.altura = altura;
+    }
+
+    calcularArea() {
+        return this.largura * this.altura;
+    }
+}
+const r = new Retangulo(5, 3);
+console.log(r.calcularArea()); // 15
+
+QUESTAO 6 - O que e um atributo privado?
+Resposta:
+E um atributo acessivel diretamente apenas dentro da classe. Em JavaScript, seu nome comeca com #.
+
+Exemplo:
+class Produto {
+    #preco;
+
+    constructor(preco) {
+        this.#preco = preco;
+    }
+
+    consultarPreco() {
+        return this.#preco;
+    }
+}
+const produto = new Produto(20);
+console.log(produto.consultarPreco()); // 20
+
+QUESTAO 7 - O que e tratamento de excecoes?
+Resposta:
+E tratar erros durante a execucao para apresentar uma mensagem ou tomar uma acao apropriada, geralmente usando try/catch.
+
+QUESTAO 8 - Explique try, catch e throw.
+Resposta:
+try: contem o codigo que pode gerar erro.
+catch: recebe e trata o erro.
+throw: lanca uma excecao.
+
+QUESTAO 9 - Crie uma funcao que impede divisao por zero.
+Resposta:
+function dividir(a, b) {
+    if (b === 0) {
+        throw new Error("Divisao por zero nao permitida.");
+    }
+    return a / b;
+}
+
+try {
+    console.log(dividir(8, 2)); // 4
+    console.log(dividir(8, 0));
+} catch (erro) {
+    console.log(erro.message);
+}
+
+QUESTAO 10 - Para que serve finally?
+Resposta:
+O bloco finally executa depois do try/catch, independentemente de ocorrer uma excecao.
+
+Exemplo:
+try {
+    console.log("Inicio");
+} catch (erro) {
+    console.log(erro.message);
+} finally {
+    console.log("Fim");
+}
+
+QUESTAO 11 - O que acontece ao acessar o topo de uma pilha vazia?
+Resposta:
+O metodo acessarTopo() do arquivo fornecido lanca um Error com a mensagem "A pilha esta vazia". Podemos tratar assim:
+
+try {
+    const pilha = new Pilha();
+    console.log(pilha.acessarTopo());
+} catch (erro) {
+    console.log(erro.message);
+}
+
+QUESTAO 12 - Como verificar se a pilha esta vazia?
+Resposta:
+if (pilha.estaVazia()) {
+    console.log("A pilha esta vazia");
+} else {
+    console.log("A pilha tem elementos");
+}
+
+QUESTAO 13 - Qual e a diferenca entre empilhar e desempilhar?
+Resposta:
+empilhar() adiciona um elemento ao topo. desempilhar() retira o elemento do topo.
+
+QUESTAO 14 - Por que a pilha inverte a ordem dos caracteres?
+Resposta:
+Porque segue LIFO: o ultimo caractere empilhado e o primeiro a ser retirado.
+
+QUESTAO 15 - Escreva codigo para empilhar os caracteres de uma palavra.
+Resposta:
+const palavra = "casa";
+const pilha = new Pilha();
+
+for (let i = 0; i < palavra.length; i++) {
+    pilha.empilhar(palavra[i]);
+}
+
+QUESTAO 16 - Escreva codigo para formar a palavra invertida usando a pilha.
+Resposta:
+let invertida = "";
+
+while (!pilha.estaVazia()) {
+    invertida += pilha.acessarTopo();
+    pilha.desempilhar();
+}
+console.log(invertida);
+
+QUESTAO 17 - Crie uma funcao que verifica se uma palavra e palindromo usando Pilha.
+Resposta:
+function verificarPalindromo(texto) {
+    const palavra = texto.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+    if (palavra.length === 0) {
+        return false;
+    }
+
+    const pilha = new Pilha();
+
+    for (let i = 0; i < palavra.length; i++) {
+        pilha.empilhar(palavra[i]);
+    }
+
+    let invertida = "";
+
+    while (!pilha.estaVazia()) {
+        invertida += pilha.acessarTopo();
+        pilha.desempilhar();
+    }
+
+    return palavra === invertida;
+}
+
+console.log(verificarPalindromo("Arara")); // true
+console.log(verificarPalindromo("Casa"));  // false
+
+QUESTAO 18 - Como tratar um erro ao desempilhar uma pilha vazia?
+Resposta:
+try {
+    const pilha = new Pilha();
+    pilha.desempilhar();
+} catch (erro) {
+    console.log("Nao foi possivel desempilhar: " + erro.message);
+}
+
+QUESTAO 19 - Qual e a diferenca entre == e ===?
+Resposta:
+== permite conversoes de tipo em algumas comparacoes. === compara sem converter o tipo e geralmente e preferivel.
+
+Exemplo:
+console.log(5 == "5");  // true
+console.log(5 === "5"); // false
+
+QUESTAO 20 - Explique o fluxo do programa de palindromo.
+Resposta:
+1. Captura o texto do campo.
+2. Converte para minusculas e remove caracteres que nao sejam letras ASCII ou numeros.
+3. Cria uma pilha.
+4. Empilha cada caractere com for.
+5. Desempilha com while para construir a string invertida.
+6. Compara as duas strings.
+7. Exibe se e ou nao palindromo.
+
+PARTE 7 - ERROS COMUNS PARA EVITAR
+----------------------------------
+1. Esquecer de importar a classe: import { Pilha } from "./pilha.js";
+2. Escrever o caminho do arquivo incorretamente.
+3. Esquecer type="module" no script do HTML.
+4. Usar o id errado no getElementById().
+5. Usar acessarTopo() depois de desempilhar() em vez de antes.
+6. Tentar desempilhar uma pilha vazia sem verificar ou tratar o erro.
+7. Esquecer de incrementar i no for.
+8. Comparar o texto original com a string invertida sem normalizar quando o enunciado pede para ignorar espacos e maiusculas.
+9. Alterar o arquivo pilha.js mesmo que o professor tenha proibido.
+10. Confundir return (devolve um valor) com console.log (mostra no console).
+
+LEMBRETE FINAL
+--------------
+Classe = modelo para criar objetos.
+Objeto = instancia criada com new.
+constructor = prepara o objeto.
+this = objeto atual.
+Metodo = funcao definida dentro da classe.
+Atributo privado = atributo cujo nome comeca com #.
+try = tenta executar.
+catch = trata uma excecao.
+throw = lanca uma excecao.
+finally = executa ao final.
+Pilha = estrutura LIFO.
+Palindromo = texto igual ao ser invertido.

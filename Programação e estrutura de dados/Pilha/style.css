@@ -1,0 +1,62 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 25px;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #cccccc;
+}
+
+h1 {
+    color: #243b64;
+}
+
+input {
+    width: 90%;
+    padding: 12px;
+    margin: 15px 0;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 25px;
+    background-color: #243b64;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #36558a;
+}
+
+#resultado {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.sucesso {
+    color: green;
+}
+
+.erro {
+    color: red;
+}
+
+.aviso {
+    color: #b7791f;
+}
