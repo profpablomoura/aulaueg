@@ -1,0 +1,86 @@
+body {
+    /* Seleciona o elemento <body> do HTML: afeta a página inteira. Este arquivo
+       precisa ser conectado ao HTML por <link rel="stylesheet" href="style.css">. */
+    /* Define a família de fontes; sans-serif é a alternativa caso Arial não esteja disponível. */
+    font-family: Arial, sans-serif;
+    /* Cor de fundo geral da página, atrás dos demais elementos. */
+    background-color: #f0f0f0;
+    /* Remove a margem padrão que os navegadores aplicam ao body. */
+    margin: 0;
+    /* Remove o preenchimento interno padrão do body. */
+    padding: 0;
+}
+
+/* Classe aplicada aos elementos HTML que têm class="container".
+   Agrupa e estiliza o conteúdo principal, por exemplo, um formulário. */
+.container {
+    /* Largura fixa do conteúdo; o box model padrão pode somar padding a essa largura. */
+    width: 350px;
+    /* 100px de espaço acima e abaixo; auto centraliza horizontalmente. */
+    margin: 100px auto;
+    /* Espaço interno entre o conteúdo e as bordas do container. */
+    padding: 25px;
+    /* Fundo branco do container. */
+    background-color: white;
+    /* Centraliza horizontalmente o texto e conteúdo inline dentro do container. */
+    text-align: center;
+    /* Arredonda os cantos do container. */
+    border-radius: 10px;
+    /* Sombra ao redor do container: deslocamento horizontal, vertical, desfoque e cor. */
+    box-shadow: 0 0 10px #cccccc;
+}
+
+/* Seleciona todos os títulos <h1> do HTML, independentemente da classe. */
+h1 {
+    /* Tamanho do texto do título. */
+    font-size: 24px;
+    /* Cor do texto do título. */
+    color: #333333;
+}
+
+/* Seleciona todos os campos <input> do HTML, como campos de texto. */
+input {
+    /* Largura relativa ao elemento pai; o padding pode aumentar a largura renderizada. */
+    width: 90%;
+    /* Espaço interno do campo, aumentando a área de digitação. */
+    padding: 10px;
+    /* Espaço externo: 10px acima/abaixo e nenhum à esquerda/direita. */
+    margin: 10px 0;
+    /* Borda fina e cinza: espessura, estilo e cor. */
+    border: 1px solid #cccccc;
+    /* Arredonda os cantos do campo. */
+    border-radius: 5px;
+}
+
+/* Seleciona os botões <button> do HTML; não depende do texto do botão. */
+button {
+    /* Espaço interno: 10px vertical e 20px horizontal. */
+    padding: 10px 20px;
+    /* Cor de fundo azul do botão. */
+    background-color: #2563eb;
+    /* Cor branca do texto do botão. */
+    color: white;
+    /* Remove a borda padrão do navegador. */
+    border: none;
+    /* Arredonda os cantos do botão. */
+    border-radius: 5px;
+    /* Mostra a mãozinha ao passar o ponteiro, indicando que é clicável. */
+    cursor: pointer;
+}
+
+/* Pseudo-classe :hover aplica este estilo somente enquanto o ponteiro está sobre o botão.
+   Complementa a regra button acima e dá um sinal visual de interação. */
+button:hover {
+    /* Escurece o fundo durante o hover. */
+    background-color: #1d4ed8;
+}
+
+/* Seleciona o elemento cujo HTML tem id="resultado" (o # representa um id no CSS).
+   Normalmente é usado para exibir uma resposta; JavaScript pode atualizar seu conteúdo,
+   enquanto esta regra controla apenas sua apresentação. */
+#resultado {
+    /* Exibe o texto em negrito. */
+    font-weight: bold;
+    /* Cria 20px de espaço acima do resultado. */
+    margin-top: 20px;
+}

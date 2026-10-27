@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Informa ao navegador que este documento usa HTML5. -->
+<html lang="pt-BR">
+<!-- Elemento raiz da página. lang identifica o idioma para navegadores e leitores de tela. -->
+
+<head>
+    <!-- Define a codificação para exibir corretamente caracteres acentuados. -->
+    <meta charset="UTF-8">
+    <!-- Ajusta a largura da página à tela do dispositivo, importante em celulares. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Texto exibido na aba do navegador. -->
+    <title>Verificador de Palíndromos</title>
+    <!-- Conecta este HTML ao arquivo CSS externo, que controla a aparência. -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Conecta ao JavaScript externo. type="module" permite usar módulos/importações;
+         defer faz o script executar depois que o HTML for interpretado. -->
+    <script type="module" src="app.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Agrupa o conteúdo principal; a classe pode ser selecionada no style.css. -->
+    <div class="container">
+        <!-- Título principal da aplicação. -->
+        <h1>Verificador de Palíndromos</h1>
+
+        <!-- Orientação apresentada à pessoa usuária. -->
+        <p>Digite uma palavra, frase ou número:</p>
+
+        <!-- Campo onde a pessoa digita o texto. O id permite ao app.js localizar
+             este elemento (por exemplo, com getElementById("texto")). -->
+        <input type="text" id="texto" placeholder="Digite aqui">
+
+        <!-- Botão de ação. O id permite ao app.js detectar o clique e iniciar
+             a verificação do conteúdo do campo. -->
+        <button id="verificar">Verificar</button>
+
+        <!-- Área inicialmente vazia onde o app.js pode mostrar o resultado. -->
+        <p id="resultado"></p>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,397 @@
+10 QUESTOES DE TREINO - PILHA + CLASSE + TRATAMENTO DE EXCECOES
+Curso: Sistemas para Internet - 2o periodo | JavaScript
+===============================================================
+
+IMPORTANTE
+----------
+Use o arquivo pilha.js fornecido pelo professor sem modifica-lo.
+Metodos: empilhar(elemento), acessarTopo(), desempilhar(), estaVazia(), tamanho(), limpar().
+acessarTopo() e desempilhar() lancam Error se a pilha estiver vazia.
+Neste arquivo, desempilhar() nao retorna o elemento. Leia com acessarTopo() antes de desempilhar().
+Os exercicios abaixo sao treino, nao previsoes garantidas da prova.
+
+QUESTAO 1 - INVERTER UM TEXTO
+Enunciado: Crie uma classe que inverta um texto usando Pilha. Se o texto estiver vazio, lance uma excecao.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+class InversorTexto {
+    inverter(texto) {
+        if (texto.length === 0) {
+            throw new Error("O texto nao pode estar vazio.");
+        }
+        const pilha = new Pilha();
+        for (let i = 0; i < texto.length; i++) {
+            pilha.empilhar(texto[i]);
+        }
+        let invertido = "";
+        while (!pilha.estaVazia()) {
+            invertido += pilha.acessarTopo();
+            pilha.desempilhar();
+        }
+        return invertido;
+    }
+}
+
+const inversor = new InversorTexto();
+try {
+    console.log(inversor.inverter("casa")); // asac
+    console.log(inversor.inverter(""));
+} catch (erro) {
+    console.log("Erro:", erro.message);
+}
+
+QUESTAO 2 - VERIFICAR PALINDROMO
+Enunciado: Crie uma classe Palindromo. Use a pilha para verificar se palavra/frase e palindromo, ignorando espacos, pontuacao e maiusculas. Texto vazio gera excecao.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+class Palindromo {
+    verificar(texto) {
+        const palavra = texto.toLowerCase().replace(/[^a-z0-9]/g, "");
+        if (palavra.length === 0) {
+            throw new Error("Digite um texto valido.");
+        }
+        const pilha = new Pilha();
+        for (let i = 0; i < palavra.length; i++) {
+            pilha.empilhar(palavra[i]);
+        }
+        let invertida = "";
+        while (!pilha.estaVazia()) {
+            invertida += pilha.acessarTopo();
+            pilha.desempilhar();
+        }
+        return palavra === invertida;
+    }
+}
+
+const verificador = new Palindromo();
+try {
+    console.log(verificador.verificar("Arara")); // true
+    console.log(verificador.verificar("Ame o poema")); // true
+    console.log(verificador.verificar("Casa")); // false
+} catch (erro) {
+    console.log("Erro:", erro.message);
+}
+
+QUESTAO 3 - PARENTESES BALANCEADOS
+Enunciado: Crie uma classe que use pilha para verificar se parenteses estao balanceados. Exemplo: "(a+b)" true; "((a+b)" false. Texto vazio gera excecao.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+class VerificadorExpressao {
+    parentesesBalanceados(expressao) {
+        if (expressao.length === 0) {
+            throw new Error("A expressao nao pode estar vazia.");
+        }
+        const pilha = new Pilha();
+        for (let i = 0; i < expressao.length; i++) {
+            if (expressao[i] === "(") {
+                pilha.empilhar("(");
+            } else if (expressao[i] === ")") {
+                if (pilha.estaVazia()) {
+                    return false;
+                }
+                pilha.desempilhar();
+            }
+        }
+        return pilha.estaVazia();
+    }
+}
+
+const v = new VerificadorExpressao();
+try {
+    console.log(v.parentesesBalanceados("(a+b)")); // true
+    console.log(v.parentesesBalanceados("((a+b)")); // false
+    console.log(v.parentesesBalanceados(""));
+} catch (erro) {
+    console.log("Erro:", erro.message);
+}
+
+QUESTAO 4 - HISTORICO COM DESFAZER
+Enunciado: Crie uma classe Historico que empilhe acoes. desfazer() retorna e remove a ultima acao. Se nao houver acao, lance excecao.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+class Historico {
+    constructor() {
+        this.pilha = new Pilha();
+    }
+    registrar(acao) {
+        if (acao.length === 0) {
+            throw new Error("A acao nao pode estar vazia.");
+        }
+        this.pilha.empilhar(acao);
+    }
+    desfazer() {
+        if (this.pilha.estaVazia()) {
+            throw new Error("Nao ha acoes para desfazer.");
+        }
+        const acao = this.pilha.acessarTopo();
+        this.pilha.desempilhar();
+        return acao;
+    }
+}
+
+const h = new Historico();
+try {
+    h.registrar("Digitar texto");
+    h.registrar("Apagar palavra");
+    console.log(h.desfazer()); // Apagar palavra
+    console.log(h.desfazer()); // Digitar texto
+    console.log(h.desfazer()); // erro
+} catch (erro) {
+    console.log("Erro:", erro.message);
+}
+
+QUESTAO 5 - BALANCEAR COLCHETES
+Enunciado: Crie uma classe para verificar se os colchetes [ e ] estao balanceados. Entrada vazia gera excecao.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+class ValidadorColchetes {
+    validar(texto) {
+        if (typeof texto !== "string" || texto.length === 0) {
+            throw new Error("Informe um texto.");
+        }
+        const pilha = new Pilha();
+        for (let i = 0; i < texto.length; i++) {
+            if (texto[i] === "[") {
+                pilha.empilhar("[");
+            } else if (texto[i] === "]") {
+                if (pilha.estaVazia()) return false;
+                pilha.desempilhar();
+            }
+        }
+        return pilha.estaVazia();
+    }
+}
+
+const vc = new ValidadorColchetes();
+try {
+    console.log(vc.validar("[[]]")); // true
+    console.log(vc.validar("[[]")); // false
+    console.log(vc.validar(""));
+} catch (erro) {
+    console.log("Erro:", erro.message);
+}
+
+QUESTAO 6 - CONSULTAR O TOPO COM ERRO TRATADO
+Enunciado: Crie uma classe que contenha uma pilha. consultarTopo() deve consultar o topo e mostrar erro claro se estiver vazia.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+class ConsultaPilha {
+    constructor() {
+        this.pilha = new Pilha();
+    }
+    adicionar(valor) {
+        this.pilha.empilhar(valor);
+    }
+    consultarTopo() {
+        try {
+            return this.pilha.acessarTopo();
+        } catch (erro) {
+            throw new Error("Nao e possivel consultar: a pilha esta vazia.");
+        }
+    }
+}
+
+const cp = new ConsultaPilha();
+try {
+    console.log(cp.consultarTopo());
+} catch (erro) {
+    console.log("Aviso:", erro.message);
+}
+
+QUESTAO 7 - CONVERTER DECIMAL PARA BINARIO
+Enunciado: Crie uma classe que converta inteiro nao negativo para binario usando uma pilha. Numero invalido gera excecao.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+class ConversorBinario {
+    converter(numero) {
+        if (!Number.isInteger(numero) || numero < 0) {
+            throw new Error("Informe um inteiro nao negativo.");
+        }
+        if (numero === 0) return "0";
+        const pilha = new Pilha();
+        let n = numero;
+        while (n > 0) {
+            pilha.empilhar(n % 2);
+            n = Math.floor(n / 2);
+        }
+        let binario = "";
+        while (!pilha.estaVazia()) {
+            binario += pilha.acessarTopo();
+            pilha.desempilhar();
+        }
+        return binario;
+    }
+}
+
+const cb = new ConversorBinario();
+try {
+    console.log(cb.converter(10)); // 1010
+    console.log(cb.converter(0)); // 0
+    console.log(cb.converter(-2));
+} catch (erro) {
+    console.log("Erro:", erro.message);
+}
+
+QUESTAO 8 - COMPARAR TEXTO COM SUA INVERSAO
+Enunciado: Crie uma classe que retorne o texto original, o invertido e se sao iguais. Texto vazio gera excecao.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+class ComparadorTexto {
+    comparar(texto) {
+        if (typeof texto !== "string" || texto.length === 0) {
+            throw new Error("O texto e obrigatorio.");
+        }
+        const pilha = new Pilha();
+        for (let i = 0; i < texto.length; i++) {
+            pilha.empilhar(texto[i]);
+        }
+        let invertido = "";
+        while (!pilha.estaVazia()) {
+            invertido += pilha.acessarTopo();
+            pilha.desempilhar();
+        }
+        return {
+            original: texto,
+            invertido: invertido,
+            saoIguais: texto === invertido
+        };
+    }
+}
+
+const ct = new ComparadorTexto();
+try {
+    console.log(ct.comparar("radar"));
+    console.log(ct.comparar(""));
+} catch (erro) {
+    console.log("Erro:", erro.message);
+}
+
+QUESTAO 9 - REGISTRO DE SENHAS COM PILHA
+Enunciado: Crie uma classe que empilhe senhas. ultimaSenha() remove e retorna a ultima senha adicionada. Senha vazia ou pilha vazia gera excecao.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+class RegistroSenhas {
+    constructor() {
+        this.pilha = new Pilha();
+    }
+    adicionarSenha(senha) {
+        if (typeof senha !== "string" || senha.length === 0) {
+            throw new Error("A senha nao pode estar vazia.");
+        }
+        this.pilha.empilhar(senha);
+    }
+    ultimaSenha() {
+        if (this.pilha.estaVazia()) {
+            throw new Error("Nao existem senhas registradas.");
+        }
+        const senha = this.pilha.acessarTopo();
+        this.pilha.desempilhar();
+        return senha;
+    }
+}
+
+const rs = new RegistroSenhas();
+try {
+    rs.adicionarSenha("A001");
+    rs.adicionarSenha("A002");
+    console.log(rs.ultimaSenha()); // A002
+    console.log(rs.ultimaSenha()); // A001
+    console.log(rs.ultimaSenha()); // erro
+} catch (erro) {
+    console.log("Erro:", erro.message);
+}
+
+QUESTAO 10 - CLASSE PILHA SEGURA
+Enunciado: Crie uma classe PilhaSegura que encapsule a Pilha fornecida. Adicionar, consultar e remover elementos. Consultar/remover pilha vazia deve gerar excecao clara.
+
+Resposta:
+import { Pilha } from "./pilha.js";
+
+class PilhaSegura {
+    constructor() {
+        this.pilha = new Pilha();
+    }
+    adicionar(elemento) {
+        this.pilha.empilhar(elemento);
+    }
+    consultarTopo() {
+        if (this.pilha.estaVazia()) {
+            throw new Error("A pilha esta vazia; nada para consultar.");
+        }
+        return this.pilha.acessarTopo();
+    }
+    removerTopo() {
+        if (this.pilha.estaVazia()) {
+            throw new Error("A pilha esta vazia; nada para remover.");
+        }
+        const elemento = this.pilha.acessarTopo();
+        this.pilha.desempilhar();
+        return elemento;
+    }
+}
+
+const ps = new PilhaSegura();
+try {
+    ps.adicionar("A");
+    ps.adicionar("B");
+    console.log(ps.consultarTopo()); // B
+    console.log(ps.removerTopo()); // B
+    console.log(ps.removerTopo()); // A
+    console.log(ps.removerTopo()); // erro
+} catch (erro) {
+    console.log("Erro tratado:", erro.message);
+}
+
+RESUMO PARA A PROVA
+-------------------
+Classe: modelo para criar objetos.
+Objeto: instancia criada com new.
+constructor(): inicializa os atributos.
+this: referencia o objeto atual.
+Metodo: funcao definida dentro da classe.
+throw new Error("mensagem"): lanca uma excecao.
+try: tenta executar o codigo.
+catch (erro): captura e trata a excecao.
+Pilha: estrutura LIFO (ultimo a entrar, primeiro a sair).
+empilhar(x): coloca x no topo.
+acessarTopo(): consulta o topo sem retirar.
+desempilhar(): retira o topo; nesta classe nao retorna o elemento.
+estaVazia(): retorna true se nao houver elementos.
+for: percorre os caracteres.
+while (!pilha.estaVazia()): repete ate a pilha ficar vazia.
+return: devolve um valor.
+
+PADRAO DE TRATAMENTO DE EXCECOES
+try {
+    // codigo que pode falhar
+} catch (erro) {
+    console.log("Erro:", erro.message);
+}
+
+LEMBRETES
+---------
+1. Identifique atributos e metodos pedidos pelo enunciado.
+2. Valide entradas e situacoes invalidas com if.
+3. Use throw new Error() quando nao puder continuar.
+4. Use try/catch ao chamar metodos que podem lancar erros.
+5. Para obter o elemento removido, use acessarTopo() antes de desempilhar().
+6. Mantenha pilha.js sem alteracoes se o professor proibiu.
+7. Os imports funcionam em app.js carregado no HTML com type="module".
