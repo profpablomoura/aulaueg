@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paralelepípedo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Cálculo do Paralelepípedo</h1>
+
+    <div class="caixa">
+        <label for="comprimento">Comprimento:</label>
+        <input type="number" id="comprimento" name="comprimento"> <br> <br>
+        <label for="largura">Largura:</label>
+        <input type="number" id="largura" name="largura"> <br> <br>
+        <label for="altura">Altura:</label>
+        <input type="number" id="altura" name="altura"> <br> <br>
+        <button type="button" onclick="calcularParalelepipedo()">Calcular</button>
+    </div>
+
+    <div class="caixa">
+        <p> Figura: <span id="figura"></span> </p>
+        <p> Área Total: <span id="areaTotal"></span> </p>
+        <p> Volume: <span id="volume"></span> </p>
+        <p> Diagonal: <span id="diagonal"></span></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
