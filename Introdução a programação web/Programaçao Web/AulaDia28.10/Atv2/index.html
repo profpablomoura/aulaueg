@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cilindro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Cálculo do Cilindro</h1>
+
+    <div class="caixa">
+        <label for="cilindro">Raio:</label>
+        <input type="number" id="cilindro" name="cilindro"> <br>
+        <label for="altura">Altura:</label>
+        <input type="number" id="altura" name="altura"> <br>
+        <button type="button" onclick="calcularCilindro()">Calcular</button>
+    </div>
+
+    <div class="caixa">
+        <p> Figura: </p> <span id="figura"></span>
+        <p> Área Lateral: </p> <span id="arealateral"></span>
+        <p> Área Total: </p> <span id="areatotal"></span>
+        <p> Volume: </p> <span id="volume"></span>
+    </div>
+ 
+    <script src="script.js"></script> 
+
+</body>
+</html>
