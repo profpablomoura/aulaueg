@@ -1,4 +1,3 @@
-
 import { Pilha } from "./pilha.js";
 
 const texto = document.getElementById("texto");
