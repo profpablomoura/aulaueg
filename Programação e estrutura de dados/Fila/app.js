@@ -9,7 +9,9 @@ const filaObj = document.getElementById('fila');
 
 
 function inserirFila() {
+    const nome = nome.value;
     const fila = new Fila();
-    
-
+    fila.acessar();
+    fila.enfileirar(nome);
 }
+
